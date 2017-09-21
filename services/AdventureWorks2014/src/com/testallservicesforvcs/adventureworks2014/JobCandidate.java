@@ -11,6 +11,7 @@ import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -73,8 +74,8 @@ public class JobCandidate implements Serializable {
         this.modifiedDate = modifiedDate;
     }
 
-    
-    
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "`BusinessEntityID`", referencedColumnName = "`BusinessEntityID`", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "`FK_JobCandidate_Employee_BusinessEntityID`"))
     public Employee getEmployee() {
         return this.employee;
     }
